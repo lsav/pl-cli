@@ -1,0 +1,8 @@
+- name: Fetch all the logs from a remote
+  hosts: all
+
+  tasks:
+    - name: Copy logs over
+      fetch:
+        src: server.log
+        dest: ../logs

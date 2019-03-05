@@ -1,0 +1,19 @@
+- name: Deploy server binary to all nodes
+  hosts: all
+  gather_facts: no
+
+  vars:
+    ssh_key: ~/.ssh/id_rsa
+
+  tasks:
+    - name: Kill current server process
+      shell: pkill java  # nuke-mode, kills all java process
+      ignore_errors: yes  # prevent error in case server is not running
+
+    - name: Copy the files over
+      copy:
+        src: "../deploy/{{ item }}"
+        dest: "~"
+      with_items:
+        - server.jar
+        - server.properties

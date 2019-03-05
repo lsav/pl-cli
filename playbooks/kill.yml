@@ -1,0 +1,6 @@
+- name: Kill a server running on a remote node
+  hosts: all
+
+  tasks:
+    - name: Kill java processes
+      shell: pkill java  # kill all the java processes
